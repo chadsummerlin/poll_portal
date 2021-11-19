@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote! | Poll Portal</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="head2">
+        <h3 class="head-txt">{{this_poll.question_text}}</h3>
+        <div class="nav-container">
+            <ul class="nav">
+                <li><a href="/index">Home</a></li>
+                <li>Your Polls</li>
+                <li><a href="/user/logout">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="index-polls-container">
+        <ul>
+        {% for answer in this_poll_answers %}
+            <form action="vote/{{answer.id}}" method="POST">
+                {%csrf_token%}
+                <li><label for="{{answer.id}}"><input type="radio" id={{answer.id}} class="radio-btn" name="answer" value="{{answer.id}}">{{answer.answer_text}}</label></li>
+        {% endfor %}
+            <button class="btn-1">Vote!</button>
+            </form>
+        </ul>
+    </div>
+</body>
+</html>

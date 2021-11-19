@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll Portal - Register or Sign in to start polling!</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <span class="head-txt"><h1><img class="icon" src="{% static 'img/icon.png' %}">Poll Portal</h1></span>
+    </div>
+    <div>
+        <div class="body">
+            <div class="container">
+                <span class="row">
+                    <span class="col-1">
+                        <h2>Registration</h2>
+                    </span>
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </span>
+                <form action="/user/create" method="POST">
+                    {% csrf_token %}
+                    <span class="row">
+                        <label class="col-1">First Name:</label> 
+                        <input class="col-2" type="text" name="first_name"><br>
+                    </span>
+                    <span class="row">
+                        <label class="col-1">Last Name:</label> 
+                        <input class="col-2" type="text" name="last_name"><br>
+                    </span>
+                    <span class="row">
+                        <label class="col-1">Email:</label> 
+                        <input class="col-2" type="text" name="user_email"><br>
+                    </span>
+                    <span class="row">
+                        <label class="col-1">Password:</label> 
+                        <input class="col-2" type="password" name="user_password"><br>
+                    </span>
+                    <span class="row">
+                        <label class="col-1">Confirm Password:</label>
+                        <input class="col-2" type="password" name="user_password_conf"><br>
+                    </span class="row">
+                        <input class="col-1 sub-btn" type="submit" value="Register">
+                </form>
+            </div>
+            <div class="container">
+                <span class="row">
+                    <span class="col-1">
+                        <h2>Log In</h2>
+                    </span>
+                </span>
+                <form action="/user/login" method="POST">
+                    {% csrf_token %}
+                    <span class="row">
+                        <label class="col-1">Email:</label>
+                        <input class="col-2" type="text" name="existing_email"><br>
+                    </span>
+                    <span class="row">
+                        <label class="col-1">Password:</label>
+                        <input class="col-2" type="password" name="user_password"><br>
+                    </span>
+                    <input class="col-1 sub-btn" type="submit" value="Log In">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

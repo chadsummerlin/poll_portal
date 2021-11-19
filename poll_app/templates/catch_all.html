@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Montserrat&display=swap" rel="stylesheet">
+    <title>Oops!</title>
+</head>
+<body>
+    <div class="header">
+        <span class="head-txt"><h1><img class="icon" src="{% static 'img/icon.png' %}">Poll Portal</h1></span>
+    </div>
+    <div class="big-center">
+        <div class="child-div">
+            <h1>Oops! Something went wrong...</h1><br>
+            <p>Click 'Go Back Home' to get back to the main page</p>
+            <a href="/index"><button>Go Back Home</button></a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results | Poll Portal</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="head2">
+        <div class="head-txt"><h2>{{this_polls_name}}</h2></div>
+        <div class="nav-container">
+            <ul class="nav">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/user/{{current_user.id}}/yourpolls">Your Polls</a></li>
+                <li><a href="/user/logout">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="index-polls-container">
+        <ul>
+            {% for answer in this_poll_answers %}
+                <li>{{answer.answer_text}}  {{answer.percentage}}%</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

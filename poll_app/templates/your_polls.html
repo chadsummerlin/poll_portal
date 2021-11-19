@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Polls | Poll Portal</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="head2">
+        <div class="head-txt"><h1>Welcome, {{current_user.f_name}}!</h1></div>
+        <div class="nav-container">
+            <ul class="nav">
+                <li><a href="/index">Home</a></li>                
+                <li><a href="/poll/form">Create Poll</a></li>
+                <li><a href="/user/logout">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="head-txt2"><h2>Your Polls</h2></div>
+    <div class="index-polls-container">
+        <ul>
+            {% for poll in user_polls%}
+                <div><a href="/poll/{{poll.id}}/view"><li>{{poll.question_text}}</li></a> <form action="/user/{{current_user.id}}/yourpolls/{{poll.id}}/delete" method="POST">{%csrf_token%}<button class='btn-1'>Delete Poll</button></form></div>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

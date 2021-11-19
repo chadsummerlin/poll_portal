@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll Portal | Create a poll</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="head2">
+        <div class="head-txt"><h2>Create a Poll</h2></div>
+        <div class="nav-container">
+            <ul class="nav">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/user/{{current_user.id}}/yourpolls">Your Polls</a></li>
+                <li><a href="/user/logout">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="body">
+        <div class="poll-create-container">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="/poll/create" method="POST">
+                {% csrf_token %}
+                <span class="row">
+                    <label class="col-1" for=“question”>Poll Question:</label> 
+                    <input type="text" class="col-2" name="question_text" id="question" placeholder="Enter a question here..." autocomplete="off">
+                </span>
+                <span class="row">
+                    <label class="col-1" for=“answer1”>Answer Choice #1:</label>
+                    <input type="text" class="col-2" id="answer1" name="answer_text1" autocomplete="off" placeholder="Answer">                    
+                </span>
+                <span class="row">
+                    <label class="col-1" for=“answer2”>Answer Choice #2:</label>
+                    <input type="text" class="col-2" id="answer2" name="answer_text2" autocomplete="off" placeholder="Answer">
+                </span>
+                <div class="btn-div"><button class="btn-1">Create Poll</button></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
